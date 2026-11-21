@@ -565,6 +565,7 @@ void TestDot2SmemBarrierAndVop3ModifiersOnWarp(uint64_t dev) {
     // Root constant b0[0] = 0x40003C00 (fp16 pair: lo=1.0, hi=2.0)
     // Root constant b0[1] = 0x42003800 (fp16 pair: lo=0.5, hi=3.0)
     // dot2(a, b, float(tid)) = 1.0*0.5 + 2.0*3.0 + float(tid) = 6.5 + float(tid)
+    //
     // Add VOP3 clamped (-float(tid) + 4.0f) => clamp(4.0 - tid, 0.0, 1.0)
     // Total = (6.5 + tid) + clamp(4.0 - tid, 0.0, 1.0)
     Rdna2Assembler a;
